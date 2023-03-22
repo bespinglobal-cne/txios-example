@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "txios-examples",
+  "version": "0.0.0",
+  "license": "MIT",
+
+  "scripts": {
+    "vue2": "yarn workspace txios-vue serve",
+    "vue3": "yarn workspace txios-vue-typescript dev",
+    "react": "yarn workspace txios-react start"
+  },
+  "devDependencies": {
+    
+  },
+  "workspaces": {
+    "packages": [
+      "txios-react",
+      "txios-vue",
+      "txios-vue-typescript"
+
+    ],
+    "nohoist": [
+      "txios-react/",
+      "txios-react/**",
+      "txios-vue/",
+      "txios-vue/**",
+      "txios-vue-typescript/",
+      "txios-vue-typescript/**"
+    ]
+ 
+  },
+  "dependencies": {
+ 
+  }
+}
