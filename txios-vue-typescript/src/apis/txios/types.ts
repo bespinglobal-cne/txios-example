@@ -1,5 +1,5 @@
-// 구매 요청 Payload
-interface Order {
+//request
+interface OrderDTO {
   service_name: string;
   payload: {
     Combine: {
@@ -7,12 +7,44 @@ interface Order {
     };
   };
 }
-// 트랜잭션 응답 Payload
-interface OrderResult {
-  Combine: { index: number };
-  Delivery: { index: number };
-  Order: { index: number };
-  Payment: { index: number };
-  Stock: { index: number };
+
+//response
+interface OrderResultDTO {
+  delivery: Delivery;
+  payment: Payment;
+  stock: Stock;
+  order: Order;
 }
-export type { Order, OrderResult };
+
+interface Order {
+  combine: CombinePayload;
+  Order: OrderPayload;
+}
+interface Delivery {
+  Delivery: DeliveryPayload;
+}
+
+interface Payment {
+  Payment: PaymentPayload;
+}
+
+interface Stock {
+  Stock: StockPayload;
+}
+
+interface OrderPayload {
+  index: number;
+}
+interface CombinePayload {
+  index: number;
+}
+interface DeliveryPayload {
+  index: number;
+}
+interface PaymentPayload {
+  index: number;
+}
+interface StockPayload {
+  index: number;
+}
+export type { OrderDTO, OrderResultDTO };

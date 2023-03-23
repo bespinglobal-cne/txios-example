@@ -7,7 +7,7 @@
       <textarea
         id="response-area"
         placeholder="result here"
-        v-model="prettyTransactionResult"
+        v-model="orderResult"
       />
     </div>
   </main>
@@ -17,13 +17,13 @@
 import { ref } from "vue";
 import type { TxiosError } from "@msa-makers/txios";
 import txios from "@/apis/txios";
-import type { Order, OrderResult } from "./apis/txios/types";
+import type { OrderDTO, OrderResultDTO } from "./apis/txios/types";
 
-const prettyTransactionResult = ref<string | undefined>(undefined);
+const orderResult = ref<string | undefined>(undefined);
 const onClickTxios = () => {
   // 요청 파라미터 준비
   const rtid = "rt_20230224064821";
-  const order: Order = {
+  const order: OrderDTO = {
     service_name: "order",
     payload: {
       Combine: {
@@ -34,9 +34,9 @@ const onClickTxios = () => {
 
   // txios요청
   txios
-    .start<Order, OrderResult>(rtid, order) // request
+    .start<OrderDTO, OrderResultDTO>(rtid, order) // request
     .then((txResponse) => {
-      prettyTransactionResult.value = JSON.stringify(txResponse, null, 2); // response
+      orderResult.value = JSON.stringify(txResponse, null, 2); // response
     })
     .catch((txError: TxiosError) => console.log(txError)); // exception
 };
@@ -44,7 +44,7 @@ const onClickTxios = () => {
 
 <style scoped>
 #response-area {
-  min-height: 450px;
+  min-height: 470px;
   min-width: 350px;
   width: 45vh;
 }

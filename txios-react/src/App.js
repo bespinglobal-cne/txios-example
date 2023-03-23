@@ -3,7 +3,7 @@ import txios from "./apis/txios";
 import React from 'react';
 function App() {
  
-  const [prettyTransactionResult, setPrettyTransactionResult] = React.useState(undefined);
+  const [orderResult, setOrderResult] = React.useState(undefined);
  
   const onClickTxios = () => {
     // 요청 파라미터 준비
@@ -21,7 +21,7 @@ function App() {
     txios
       .start(rtid, order) // request
       .then((txResponse) => {
-        setPrettyTransactionResult(JSON.stringify(txResponse, null, 2));
+        setOrderResult(JSON.stringify(txResponse, null, 2));
       }) 
       .catch(txError => console.log(txError)); // exception
   }
@@ -33,7 +33,7 @@ function App() {
       <textarea 
         id="response-area" 
         placeholder="result here"
-        defaultValue={ prettyTransactionResult }
+        defaultValue={ orderResult }
       /> 
     </div>
   );

@@ -6,7 +6,7 @@
     <textarea
         id="response-area"
         placeholder="result here"
-        v-model="prettyTransactionResult"
+        v-model="orderResult"
     />
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   components: {},
   data() {
     return {
-      prettyTransactionResult: undefined
+      orderResult: undefined
     };
   },
 
@@ -40,7 +40,7 @@ export default {
       txios
         .start(rtid, order) // request
         .then((txResponse) => {
-          this.prettyTransactionResult = JSON.stringify(txResponse, null, 2); // response
+          this.orderResult = JSON.stringify(txResponse, null, 2); // response
         }) 
         .catch(txError => console.log(txError)); // exception
     }
@@ -59,7 +59,7 @@ export default {
   margin-top: 60px;
 }
 #response-area {
-  min-height: 450px;
+  min-height: 470px;
   min-width: 350px;
   width: 45vh;
 }
